@@ -42,18 +42,18 @@ npx shadcn-ui@latest add button
 page.tsx
 
 ```tsx
-import { Button } from '@/components/ui/button';
-import { Camera } from 'lucide-react';
+import { Button } from '@/components/ui/button'
+import { Camera } from 'lucide-react'
 
 export default function Home() {
   return (
-    <div className='h-screen flex items-center justify-center'>
+    <div className="h-screen flex items-center justify-center">
       <Button>default button</Button>
-      <Button variant='outline' size='icon'>
+      <Button variant="outline" size="icon">
         <Camera />
       </Button>
     </div>
-  );
+  )
 }
 ```
 
@@ -98,42 +98,42 @@ layout.tsx
 export const metadata: Metadata = {
   title: 'Jobify Dev',
   description: 'Job application tracking system for job hunters',
-};
+}
 ```
 
 page.tsx
 
 ```tsx
-import Image from 'next/image';
-import Logo from '../assets/logo.svg';
-import LandingImg from '../assets/main.svg';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
+import Image from 'next/image'
+import Logo from '../assets/logo.svg'
+import LandingImg from '../assets/main.svg'
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 export default function Home() {
   return (
     <main>
-      <header className='max-w-6xl mx-auto px-4 sm:px-8 py-6 '>
-        <Image src={Logo} alt='logo' />
+      <header className="max-w-6xl mx-auto px-4 sm:px-8 py-6 ">
+        <Image src={Logo} alt="logo" />
       </header>
-      <section className='max-w-6xl mx-auto px-4 sm:px-8 h-screen -mt-20 grid lg:grid-cols-[1fr,400px] items-center'>
+      <section className="max-w-6xl mx-auto px-4 sm:px-8 h-screen -mt-20 grid lg:grid-cols-[1fr,400px] items-center">
         <div>
-          <h1 className='capitalize text-4xl md:text-7xl font-bold'>
-            job <span className='text-primary'>tracking</span> app
+          <h1 className="capitalize text-4xl md:text-7xl font-bold">
+            job <span className="text-primary">tracking</span> app
           </h1>
-          <p className='leading-loose max-w-md mt-4 '>
+          <p className="leading-loose max-w-md mt-4 ">
             I am baby wayfarers hoodie next level taiyaki brooklyn cliche blue
             bottle single-origin coffee chia. Aesthetic post-ironic venmo,
             quinoa lo-fi tote bag adaptogen everyday carry meggings +1 brunch
             narwhal.
           </p>
-          <Button asChild className='mt-4'>
-            <Link href='/add-job'>Get Started</Link>
+          <Button asChild className="mt-4">
+            <Link href="/add-job">Get Started</Link>
           </Button>
         </div>
-        <Image src={LandingImg} alt='landing' className='hidden lg:block ' />
+        <Image src={LandingImg} alt="landing" className="hidden lg:block " />
       </section>
     </main>
-  );
+  )
 }
 ```
 
@@ -159,9 +159,9 @@ export default function Home() {
 
 ```tsx
 function layout({ children }: { children: React.ReactNode }) {
-  return <div>{children}</div>;
+  return <div>{children}</div>
 }
-export default layout;
+export default layout
 ```
 
 ## Challenge - Add Clerk Auth
@@ -185,38 +185,38 @@ export default layout;
 layout.tsx
 
 ```tsx
-import { ClerkProvider } from '@clerk/nextjs';
+import { ClerkProvider } from '@clerk/nextjs'
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <ClerkProvider>
-      <html lang='en'>
+      <html lang="en">
         <body className={inter.className}>{children}</body>
       </html>
     </ClerkProvider>
-  );
+  )
 }
 ```
 
 middleware.tsx
 
 ```tsx
-import { authMiddleware } from '@clerk/nextjs';
+import { authMiddleware } from '@clerk/nextjs'
 
 // This example protects all routes including api/trpc routes
 // Please edit this to allow other routes to be public as needed.
 // See https://clerk.com/docs/references/nextjs/auth-middleware for more information about configuring your Middleware
 export default authMiddleware({
   publicRoutes: ['/'],
-});
+})
 
 export const config = {
   matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
-};
+}
 ```
 
 ## Challenge - Build the links.tsx Component
@@ -251,13 +251,13 @@ export const config = {
 utils/links.tsx
 
 ```tsx
-import { AreaChart, Layers, AppWindow } from 'lucide-react';
+import { AreaChart, Layers, AppWindow } from 'lucide-react'
 
 type NavLink = {
-  href: string;
-  label: string;
-  icon: React.ReactNode;
-};
+  href: string
+  label: string
+  icon: React.ReactNode
+}
 
 const links: NavLink[] = [
   {
@@ -275,9 +275,9 @@ const links: NavLink[] = [
     label: 'stats',
     icon: <AreaChart />,
   },
-];
+]
 
-export default links;
+export default links
 ```
 
 ## Challenge - Dashboard Layout
@@ -321,28 +321,28 @@ export default links;
 (dashboard/layout.tsx)
 
 ```tsx
-import Navbar from '@/components/Navbar';
-import Sidebar from '@/components/Sidebar';
+import Navbar from '@/components/Navbar'
+import Sidebar from '@/components/Sidebar'
 
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react'
 
 function layout({ children }: PropsWithChildren) {
   return (
-    <main className='grid lg:grid-cols-5'>
+    <main className="grid lg:grid-cols-5">
       {/* first-col hide on small screen */}
-      <div className='hidden lg:block lg:col-span-1 lg:min-h-screen'>
+      <div className="hidden lg:block lg:col-span-1 lg:min-h-screen">
         <Sidebar />
       </div>
       {/* second-col hide dropdown on big screen */}
 
-      <div className='lg:col-span-4'>
+      <div className="lg:col-span-4">
         <Navbar />
-        <div className='py-16 px-4 sm:px-8 lg:px-16'>{children}</div>
+        <div className="py-16 px-4 sm:px-8 lg:px-16">{children}</div>
       </div>
     </main>
-  );
+  )
 }
-export default layout;
+export default layout
 ```
 
 ## Challenge - Build Sidebar Component
@@ -371,20 +371,20 @@ export default layout;
   Sidebar.tsx
 
 ```tsx
-'use client';
-import Logo from '@/assets/images/logo.svg';
-import links from '@/utils/links';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Button } from './ui/button';
-import { usePathname } from 'next/navigation';
+'use client'
+import Logo from '@/assets/images/logo.svg'
+import links from '@/utils/links'
+import Image from 'next/image'
+import Link from 'next/link'
+import { Button } from './ui/button'
+import { usePathname } from 'next/navigation'
 function Sidebar() {
-  const pathname = usePathname();
+  const pathname = usePathname()
 
   return (
-    <aside className='py-4 px-8 bg-muted h-full'>
-      <Image src={Logo} alt='logo' className='mx-auto' />
-      <div className='flex flex-col mt-20 gap-y-4'>
+    <aside className="py-4 px-8 bg-muted h-full">
+      <Image src={Logo} alt="logo" className="mx-auto" />
+      <div className="flex flex-col mt-20 gap-y-4">
         {links.map((link) => {
           return (
             <Button
@@ -392,17 +392,17 @@ function Sidebar() {
               key={link.href}
               variant={pathname === link.href ? 'default' : 'link'}
             >
-              <Link href={link.href} className='flex items-center gap-x-2 '>
-                {link.icon} <span className='capitalize'>{link.label}</span>
+              <Link href={link.href} className="flex items-center gap-x-2 ">
+                {link.icon} <span className="capitalize">{link.label}</span>
               </Link>
             </Button>
-          );
+          )
         })}
       </div>
     </aside>
-  );
+  )
 }
-export default Sidebar;
+export default Sidebar
 ```
 
 ## Challenge - Build Navbar Component
@@ -429,24 +429,24 @@ export default Sidebar;
 Navbar.tsx
 
 ```tsx
-import LinksDropdown from './LinksDropdown';
-import { UserButton } from '@clerk/nextjs';
-import ThemeToggle from './ThemeToggle';
+import LinksDropdown from './LinksDropdown'
+import { UserButton } from '@clerk/nextjs'
+import ThemeToggle from './ThemeToggle'
 
 function Navbar() {
   return (
-    <nav className='bg-muted py-4 sm:px-16 lg:px-24 px-4 flex items-center justify-between'>
+    <nav className="bg-muted py-4 sm:px-16 lg:px-24 px-4 flex items-center justify-between">
       <div>
         <LinksDropdown />
       </div>
-      <div className='flex items-center gap-x-4'>
+      <div className="flex items-center gap-x-4">
         <ThemeToggle />
-        <UserButton afterSignOutUrl='/' />
+        <UserButton afterSignOutUrl="/" />
       </div>
     </nav>
-  );
+  )
 }
-export default Navbar;
+export default Navbar
 ```
 
 ## Challenge - Build LinksDropdown Component
@@ -496,40 +496,40 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { AlignLeft } from 'lucide-react';
-import { Button } from './ui/button';
-import links from '@/utils/links';
-import Link from 'next/link';
+} from '@/components/ui/dropdown-menu'
+import { AlignLeft } from 'lucide-react'
+import { Button } from './ui/button'
+import links from '@/utils/links'
+import Link from 'next/link'
 function DropdownLinks() {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild className='lg:hidden'>
-        <Button variant='outline' size='icon'>
+      <DropdownMenuTrigger asChild className="lg:hidden">
+        <Button variant="outline" size="icon">
           <AlignLeft />
 
-          <span className='sr-only'>Toggle links</span>
+          <span className="sr-only">Toggle links</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
-        className='w-52 lg:hidden '
-        align='start'
+        className="w-52 lg:hidden "
+        align="start"
         sideOffset={25}
       >
         {links.map((link) => {
           return (
             <DropdownMenuItem key={link.href}>
-              <Link href={link.href} className='flex items-center gap-x-2 '>
-                {link.icon} <span className='capitalize'>{link.label}</span>
+              <Link href={link.href} className="flex items-center gap-x-2 ">
+                {link.icon} <span className="capitalize">{link.label}</span>
               </Link>
             </DropdownMenuItem>
-          );
+          )
         })}
       </DropdownMenuContent>
     </DropdownMenu>
-  );
+  )
 }
-export default DropdownLinks;
+export default DropdownLinks
 ```
 
 ## Challenge - Add New Theme
@@ -556,18 +556,18 @@ export default DropdownLinks;
 app/providers.tsx
 
 ```tsx
-'use client';
+'use client'
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
-  return <>{children}</>;
-};
-export default Providers;
+  return <>{children}</>
+}
+export default Providers
 ```
 
 app/layout
 
 ```tsx
-<html lang='en' suppressHydrationWarning>
+<html lang="en" suppressHydrationWarning>
   <body className={inter.className}>
     <Providers>{children}</Providers>
   </body>
@@ -591,69 +591,69 @@ npm install next-themes
 components/theme-provider.tsx
 
 ```tsx
-'use client';
+'use client'
 
-import * as React from 'react';
-import { ThemeProvider as NextThemesProvider } from 'next-themes';
-import { type ThemeProviderProps } from 'next-themes/dist/types';
+import * as React from 'react'
+import { ThemeProvider as NextThemesProvider } from 'next-themes'
+import { type ThemeProviderProps } from 'next-themes/dist/types'
 
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
-  return <NextThemesProvider {...props}>{children}</NextThemesProvider>;
+  return <NextThemesProvider {...props}>{children}</NextThemesProvider>
 }
 ```
 
 app/providers.tsx
 
 ```tsx
-'use client';
-import { ThemeProvider } from '@/components/theme-provider';
+'use client'
+import { ThemeProvider } from '@/components/theme-provider'
 const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <ThemeProvider
-        attribute='class'
-        defaultTheme='system'
+        attribute="class"
+        defaultTheme="system"
         enableSystem
         disableTransitionOnChange
       >
         {children}
       </ThemeProvider>
     </>
-  );
-};
-export default Providers;
+  )
+}
+export default Providers
 ```
 
 ThemeToggle.tsx
 
 ```tsx
-'use client';
+'use client'
 
-import * as React from 'react';
-import { Moon, Sun } from 'lucide-react';
-import { useTheme } from 'next-themes';
+import * as React from 'react'
+import { Moon, Sun } from 'lucide-react'
+import { useTheme } from 'next-themes'
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+} from '@/components/ui/dropdown-menu'
 
 export function ModeToggle() {
-  const { setTheme } = useTheme();
+  const { setTheme } = useTheme()
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant='outline' size='icon'>
-          <Sun className='h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0' />
-          <Moon className='absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100' />
-          <span className='sr-only'>Toggle theme</span>
+        <Button variant="outline" size="icon">
+          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align='end'>
+      <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={() => setTheme('light')}>
           Light
         </DropdownMenuItem>
@@ -665,7 +665,7 @@ export function ModeToggle() {
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  );
+  )
 }
 ```
 
@@ -679,13 +679,13 @@ npx shadcn-ui@latest add form input
 ```
 
 ```tsx
-'use client';
+'use client'
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import * as z from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import * as z from 'zod'
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/button'
 import {
   Form,
   FormControl,
@@ -693,14 +693,14 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
+} from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
 
 const formSchema = z.object({
   username: z.string().min(2, {
     message: 'Username must be at least 2 characters.',
   }),
-});
+})
 
 function CreateJobForm() {
   // 1. Define your form.
@@ -709,37 +709,37 @@ function CreateJobForm() {
     defaultValues: {
       username: '',
     },
-  });
+  })
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log(values);
+    console.log(values)
   }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
-          name='username'
+          name="username"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder='shadcn' {...field} />
+                <Input placeholder="shadcn" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type='submit'>Submit</Button>
+        <Button type="submit">Submit</Button>
       </form>
     </Form>
-  );
+  )
 }
-export default CreateJobForm;
+export default CreateJobForm
 ```
 
 ### CreateJobForm - Details
@@ -787,19 +787,19 @@ Enums in TypeScript are a special type that allows you to define a set of named 
 - utils/types.ts
 
 ```ts
-import * as z from 'zod';
+import * as z from 'zod'
 
 export type JobType = {
-  id: string;
-  createdAt: Date;
-  updatedAt: Date;
-  clerkId: string;
-  position: string;
-  company: string;
-  location: string;
-  status: string;
-  mode: string;
-};
+  id: string
+  createdAt: Date
+  updatedAt: Date
+  clerkId: string
+  position: string
+  company: string
+  location: string
+  status: string
+  mode: string
+}
 
 export enum JobStatus {
   Pending = 'pending',
@@ -825,9 +825,9 @@ export const createAndEditJobSchema = z.object({
   }),
   status: z.nativeEnum(JobStatus),
   mode: z.nativeEnum(JobMode),
-});
+})
 
-export type CreateAndEditJobType = z.infer<typeof createAndEditJobSchema>;
+export type CreateAndEditJobType = z.infer<typeof createAndEditJobSchema>
 ```
 
 ## Explore Select Component
@@ -883,27 +883,27 @@ npx shadcn-ui@latest add select
 - components/FormComponents
 
 ```tsx
-import { Control } from 'react-hook-form';
+import { Control } from 'react-hook-form'
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
+} from '@/components/ui/select'
 import {
   FormControl,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { Input } from './ui/input';
+} from '@/components/ui/form'
+import { Input } from './ui/input'
 
 type CustomFormFieldProps = {
-  name: string;
-  control: Control<any>;
-};
+  name: string
+  control: Control<any>
+}
 
 export function CustomFormField({ name, control }: CustomFormFieldProps) {
   return (
@@ -912,7 +912,7 @@ export function CustomFormField({ name, control }: CustomFormFieldProps) {
       name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel className='capitalize'>{name}</FormLabel>
+          <FormLabel className="capitalize">{name}</FormLabel>
           <FormControl>
             <Input {...field} />
           </FormControl>
@@ -920,15 +920,15 @@ export function CustomFormField({ name, control }: CustomFormFieldProps) {
         </FormItem>
       )}
     />
-  );
+  )
 }
 
 type CustomFormSelectProps = {
-  name: string;
-  control: Control<any>;
-  items: string[];
-  labelText?: string;
-};
+  name: string
+  control: Control<any>
+  items: string[]
+  labelText?: string
+}
 
 export function CustomFormSelect({
   name,
@@ -942,7 +942,7 @@ export function CustomFormSelect({
       name={name}
       render={({ field }) => (
         <FormItem>
-          <FormLabel className='capitalize'>{labelText || name}</FormLabel>
+          <FormLabel className="capitalize">{labelText || name}</FormLabel>
           <Select onValueChange={field.onChange} defaultValue={field.value}>
             <FormControl>
               <SelectTrigger>
@@ -955,7 +955,7 @@ export function CustomFormSelect({
                   <SelectItem key={item} value={item}>
                     {item}
                   </SelectItem>
-                );
+                )
               })}
             </SelectContent>
           </Select>
@@ -964,9 +964,9 @@ export function CustomFormSelect({
         </FormItem>
       )}
     />
-  );
+  )
 }
-export default CustomFormSelect;
+export default CustomFormSelect
 ```
 
 ## Challenge - CreateJobForm
@@ -1010,22 +1010,22 @@ export default CustomFormSelect;
 ## CreateJobForm
 
 ```tsx
-'use client';
+'use client'
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
 
 import {
   JobStatus,
   JobMode,
   createAndEditJobSchema,
   CreateAndEditJobType,
-} from '@/utils/types';
+} from '@/utils/types'
 
-import { Button } from '@/components/ui/button';
-import { Form } from '@/components/ui/form';
+import { Button } from '@/components/ui/button'
+import { Form } from '@/components/ui/form'
 
-import { CustomFormField, CustomFormSelect } from './FormComponents';
+import { CustomFormField, CustomFormSelect } from './FormComponents'
 
 function CreateJobForm() {
   // 1. Define your form.
@@ -1038,53 +1038,53 @@ function CreateJobForm() {
       status: JobStatus.Pending,
       mode: JobMode.FullTime,
     },
-  });
+  })
 
   function onSubmit(values: CreateAndEditJobType) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log(values);
+    console.log(values)
   }
 
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className='bg-muted p-8 rounded'
+        className="bg-muted p-8 rounded"
       >
-        <h2 className='capitalize font-semibold text-4xl mb-6'>add job</h2>
-        <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-3 items-start'>
+        <h2 className="capitalize font-semibold text-4xl mb-6">add job</h2>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 items-start">
           {/* position */}
-          <CustomFormField name='position' control={form.control} />
+          <CustomFormField name="position" control={form.control} />
           {/* company */}
-          <CustomFormField name='company' control={form.control} />
+          <CustomFormField name="company" control={form.control} />
           {/* location */}
-          <CustomFormField name='location' control={form.control} />
+          <CustomFormField name="location" control={form.control} />
 
           {/* job status */}
           <CustomFormSelect
-            name='status'
+            name="status"
             control={form.control}
-            labelText='job status'
+            labelText="job status"
             items={Object.values(JobStatus)}
           />
           {/* job  type */}
           <CustomFormSelect
-            name='mode'
+            name="mode"
             control={form.control}
-            labelText='job mode'
+            labelText="job mode"
             items={Object.values(JobMode)}
           />
 
-          <Button type='submit' className='self-end capitalize'>
+          <Button type="submit" className="self-end capitalize">
             create job
           </Button>
         </div>
       </form>
     </Form>
-  );
+  )
 }
-export default CreateJobForm;
+export default CreateJobForm
 ```
 
 ## Create DB in Render
@@ -1129,23 +1129,23 @@ npx prisma init
 utils/db.ts
 
 ```ts
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@prisma/client'
 
 const prismaClientSingleton = () => {
-  return new PrismaClient();
-};
+  return new PrismaClient()
+}
 
-type PrismaClientSingleton = ReturnType<typeof prismaClientSingleton>;
+type PrismaClientSingleton = ReturnType<typeof prismaClientSingleton>
 
 const globalForPrisma = globalThis as unknown as {
-  prisma: PrismaClientSingleton | undefined;
-};
+  prisma: PrismaClientSingleton | undefined
+}
 
-const prisma = globalForPrisma.prisma ?? prismaClientSingleton();
+const prisma = globalForPrisma.prisma ?? prismaClientSingleton()
 
-export default prisma;
+export default prisma
 
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
 ```
 
 - create Job model
@@ -1238,41 +1238,41 @@ npx prisma db push
 - utils/actions
 
 ```ts
-'use server';
+'use server'
 
-import prisma from './db';
-import { auth } from '@clerk/nextjs';
-import { JobType, CreateAndEditJobType, createAndEditJobSchema } from './types';
-import { redirect } from 'next/navigation';
-import { Prisma } from '@prisma/client';
-import dayjs from 'dayjs';
+import prisma from './db'
+import { auth } from '@clerk/nextjs'
+import { JobType, CreateAndEditJobType, createAndEditJobSchema } from './types'
+import { redirect } from 'next/navigation'
+import { Prisma } from '@prisma/client'
+import dayjs from 'dayjs'
 
 function authenticateAndRedirect(): string {
-  const { userId } = auth();
+  const { userId } = auth()
   if (!userId) {
-    redirect('/');
+    redirect('/')
   }
-  return userId;
+  return userId
 }
 
 export async function createJobAction(
   values: CreateAndEditJobType
 ): Promise<JobType | null> {
   // await new Promise((resolve) => setTimeout(resolve, 3000));
-  const userId = authenticateAndRedirect();
+  const userId = authenticateAndRedirect()
   try {
-    createAndEditJobSchema.parse(values);
+    createAndEditJobSchema.parse(values)
     const job: JobType = await prisma.job.create({
       data: {
         ...values,
 
         clerkId: userId,
       },
-    });
-    return job;
+    })
+    return job
   } catch (error) {
-    console.error(error);
-    return null;
+    console.error(error)
+    return null
   }
 }
 ```
@@ -1298,13 +1298,13 @@ npx shadcn-ui@latest add toast
 - app/provider
 
 ```tsx
-'use client';
+'use client'
 
-import { ThemeProvider } from '@/components/theme-provider';
-import { useState } from 'react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { Toaster } from '@/components/ui/toaster';
+import { ThemeProvider } from '@/components/theme-provider'
+import { useState } from 'react'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { Toaster } from '@/components/ui/toaster'
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
   const [queryClient] = useState(
@@ -1318,12 +1318,12 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
           },
         },
       })
-  );
+  )
 
   return (
     <ThemeProvider
-      attribute='class'
-      defaultTheme='system'
+      attribute="class"
+      defaultTheme="system"
       enableSystem
       disableTransitionOnChange
     >
@@ -1333,71 +1333,71 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </ThemeProvider>
-  );
-};
-export default Providers;
+  )
+}
+export default Providers
 ```
 
 - add-job/page
 
 ```tsx
-import CreateJobForm from '@/components/CreateJobForm';
+import CreateJobForm from '@/components/CreateJobForm'
 import {
   dehydrate,
   HydrationBoundary,
   QueryClient,
-} from '@tanstack/react-query';
+} from '@tanstack/react-query'
 
 function AddJobPage() {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient()
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <CreateJobForm />
     </HydrationBoundary>
-  );
+  )
 }
-export default AddJobPage;
+export default AddJobPage
 ```
 
 ## CreateJobForm Complete
 
 ```tsx
 // imports
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { createJobAction } from '@/utils/actions';
-import { useToast } from '@/components/ui/use-toast';
-import { useRouter } from 'next/navigation';
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { createJobAction } from '@/utils/actions'
+import { useToast } from '@/components/ui/use-toast'
+import { useRouter } from 'next/navigation'
 
 // logic
-const queryClient = useQueryClient();
-const { toast } = useToast();
-const router = useRouter();
+const queryClient = useQueryClient()
+const { toast } = useToast()
+const router = useRouter()
 const { mutate, isPending } = useMutation({
   mutationFn: (values: CreateAndEditJobType) => createJobAction(values),
   onSuccess: (data) => {
     if (!data) {
       toast({
         description: 'there was an error',
-      });
-      return;
+      })
+      return
     }
-    toast({ description: 'job created' });
-    queryClient.invalidateQueries({ queryKey: ['jobs'] });
-    queryClient.invalidateQueries({ queryKey: ['stats'] });
-    queryClient.invalidateQueries({ queryKey: ['charts'] });
+    toast({ description: 'job created' })
+    queryClient.invalidateQueries({ queryKey: ['jobs'] })
+    queryClient.invalidateQueries({ queryKey: ['stats'] })
+    queryClient.invalidateQueries({ queryKey: ['charts'] })
 
-    router.push('/jobs');
+    router.push('/jobs')
     // form.reset();
   },
-});
+})
 
 function onSubmit(values: CreateAndEditJobType) {
-  mutate(values);
+  mutate(values)
 }
 // return
-<Button type='submit' className='self-end capitalize' disabled={isPending}>
+;<Button type="submit" className="self-end capitalize" disabled={isPending}>
   {isPending ? 'loading...' : 'create job'}
-</Button>;
+</Button>
 ```
 
 ## Challenge - GetAllJobsAction
@@ -1449,11 +1449,11 @@ function onSubmit(values: CreateAndEditJobType) {
 
 ```ts
 type GetAllJobsActionTypes = {
-  search?: string;
-  jobStatus?: string;
-  page?: number;
-  limit?: number;
-};
+  search?: string
+  jobStatus?: string
+  page?: number
+  limit?: number
+}
 
 export async function getAllJobsAction({
   search,
@@ -1461,17 +1461,17 @@ export async function getAllJobsAction({
   page = 1,
   limit = 10,
 }: GetAllJobsActionTypes): Promise<{
-  jobs: JobType[];
-  count: number;
-  page: number;
-  totalPages: number;
+  jobs: JobType[]
+  count: number
+  page: number
+  totalPages: number
 }> {
-  const userId = authenticateAndRedirect();
+  const userId = authenticateAndRedirect()
 
   try {
     let whereClause: Prisma.JobWhereInput = {
       clerkId: userId,
-    };
+    }
     if (search) {
       whereClause = {
         ...whereClause,
@@ -1487,13 +1487,13 @@ export async function getAllJobsAction({
             },
           },
         ],
-      };
+      }
     }
     if (jobStatus && jobStatus !== 'all') {
       whereClause = {
         ...whereClause,
         status: jobStatus,
-      };
+      }
     }
 
     const jobs: JobType[] = await prisma.job.findMany({
@@ -1501,12 +1501,12 @@ export async function getAllJobsAction({
       orderBy: {
         createdAt: 'desc',
       },
-    });
+    })
 
-    return { jobs, count: 0, page: 1, totalPages: 0 };
+    return { jobs, count: 0, page: 1, totalPages: 0 }
   } catch (error) {
-    console.error(error);
-    return { jobs: [], count: 0, page: 1, totalPages: 0 };
+    console.error(error)
+    return { jobs: [], count: 0, page: 1, totalPages: 0 }
   }
 }
 ```
@@ -1524,50 +1524,50 @@ export async function getAllJobsAction({
 
 ```tsx
 function loading() {
-  return <h2 className='text-xl font-medium capitalize'>loading...</h2>;
+  return <h2 className="text-xl font-medium capitalize">loading...</h2>
 }
-export default loading;
+export default loading
 ```
 
 JobCard.tsx
 
 ```tsx
-import { JobType } from '@/utils/types';
+import { JobType } from '@/utils/types'
 
 function JobCard({ job }: { job: JobType }) {
-  return <h1 className='text-3xl'>JobCard</h1>;
+  return <h1 className="text-3xl">JobCard</h1>
 }
-export default JobCard;
+export default JobCard
 ```
 
 jobs/page.tsx
 
 ```tsx
-import JobsList from '@/components/JobsList';
-import SearchForm from '@/components/SearchForm';
+import JobsList from '@/components/JobsList'
+import SearchForm from '@/components/SearchForm'
 import {
   dehydrate,
   HydrationBoundary,
   QueryClient,
-} from '@tanstack/react-query';
-import { getAllJobsAction } from '@/utils/actions';
+} from '@tanstack/react-query'
+import { getAllJobsAction } from '@/utils/actions'
 
 async function AllJobsPage() {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient()
 
   await queryClient.prefetchQuery({
     queryKey: ['jobs', '', 'all', 1],
     queryFn: () => getAllJobsAction({}),
-  });
+  })
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <SearchForm />
       <JobsList />
     </HydrationBoundary>
-  );
+  )
 }
 
-export default AllJobsPage;
+export default AllJobsPage
 ```
 
 ## Challenge - SearchForm
@@ -1613,10 +1613,10 @@ export default AllJobsPage;
 ## SearchForm
 
 ```tsx
-'use client';
-import { Input } from './ui/input';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { Button } from './ui/button';
+'use client'
+import { Input } from './ui/input'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { Button } from './ui/button'
 
 import {
   Select,
@@ -1624,42 +1624,42 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
-import { JobStatus } from '@/utils/types';
+} from '@/components/ui/select'
+import { JobStatus } from '@/utils/types'
 
 function SearchContainer() {
   // set default values
-  const searchParams = useSearchParams();
-  const search = searchParams.get('search') || '';
-  const jobStatus = searchParams.get('jobStatus') || 'all';
+  const searchParams = useSearchParams()
+  const search = searchParams.get('search') || ''
+  const jobStatus = searchParams.get('jobStatus') || 'all'
 
-  const router = useRouter();
-  const pathname = usePathname();
+  const router = useRouter()
+  const pathname = usePathname()
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    let params = new URLSearchParams();
+    e.preventDefault()
+    let params = new URLSearchParams()
 
-    const formData = new FormData(e.currentTarget);
-    const search = formData.get('search') as string;
-    const jobStatus = formData.get('jobStatus') as string;
-    params.set('search', search);
-    params.set('jobStatus', jobStatus);
+    const formData = new FormData(e.currentTarget)
+    const search = formData.get('search') as string
+    const jobStatus = formData.get('jobStatus') as string
+    params.set('search', search)
+    params.set('jobStatus', jobStatus)
 
-    router.push(`${pathname}?${params.toString()}`);
-  };
+    router.push(`${pathname}?${params.toString()}`)
+  }
 
   return (
     <form
-      className='bg-muted mb-16 p-8 grid sm:grid-cols-2 md:grid-cols-3  gap-4 rounded-lg'
+      className="bg-muted mb-16 p-8 grid sm:grid-cols-2 md:grid-cols-3  gap-4 rounded-lg"
       onSubmit={handleSubmit}
     >
       <Input
-        type='text'
-        placeholder='Search Jobs'
-        name='search'
+        type="text"
+        placeholder="Search Jobs"
+        name="search"
         defaultValue={search}
       />
-      <Select defaultValue={jobStatus} name='jobStatus'>
+      <Select defaultValue={jobStatus} name="jobStatus">
         <SelectTrigger>
           <SelectValue />
         </SelectTrigger>
@@ -1669,15 +1669,15 @@ function SearchContainer() {
               <SelectItem key={jobStatus} value={jobStatus}>
                 {jobStatus}
               </SelectItem>
-            );
+            )
           })}
         </SelectContent>
       </Select>
-      <Button type='submit'>Search</Button>
+      <Button type="submit">Search</Button>
     </form>
-  );
+  )
 }
-export default SearchContainer;
+export default SearchContainer
 ```
 
 ## Challenge - JobsList
@@ -1719,41 +1719,41 @@ export default SearchContainer;
 ## JobsList
 
 ```tsx
-'use client';
-import JobCard from './JobCard';
-import { useSearchParams } from 'next/navigation';
-import { getAllJobsAction } from '@/utils/actions';
-import { useQuery } from '@tanstack/react-query';
+'use client'
+import JobCard from './JobCard'
+import { useSearchParams } from 'next/navigation'
+import { getAllJobsAction } from '@/utils/actions'
+import { useQuery } from '@tanstack/react-query'
 
 function JobsList() {
-  const searchParams = useSearchParams();
+  const searchParams = useSearchParams()
 
-  const search = searchParams.get('search') || '';
-  const jobStatus = searchParams.get('jobStatus') || 'all';
+  const search = searchParams.get('search') || ''
+  const jobStatus = searchParams.get('jobStatus') || 'all'
 
-  const pageNumber = Number(searchParams.get('page')) || 1;
+  const pageNumber = Number(searchParams.get('page')) || 1
 
   const { data, isPending } = useQuery({
     queryKey: ['jobs', search ?? '', jobStatus, pageNumber],
     queryFn: () => getAllJobsAction({ search, jobStatus, page: pageNumber }),
-  });
-  const jobs = data?.jobs || [];
+  })
+  const jobs = data?.jobs || []
 
-  if (isPending) return <h2 className='text-xl'>Please Wait...</h2>;
+  if (isPending) return <h2 className="text-xl">Please Wait...</h2>
 
-  if (jobs.length < 1) return <h2 className='text-xl'>No Jobs Found...</h2>;
+  if (jobs.length < 1) return <h2 className="text-xl">No Jobs Found...</h2>
   return (
     <>
       {/*button container  */}
-      <div className='grid md:grid-cols-2  gap-8'>
+      <div className="grid md:grid-cols-2  gap-8">
         {jobs.map((job) => {
-          return <JobCard key={job.id} job={job} />;
+          return <JobCard key={job.id} job={job} />
         })}
       </div>
     </>
-  );
+  )
 }
-export default JobsList;
+export default JobsList
 ```
 
 ## Explore - shadcn/ui badge separator and card components
@@ -1804,10 +1804,10 @@ npx shadcn-ui@latest add badge separator card
 JobCard
 
 ```tsx
-import { JobType } from '@/utils/types';
-import { MapPin, Briefcase, CalendarDays, RadioTower } from 'lucide-react';
+import { JobType } from '@/utils/types'
+import { MapPin, Briefcase, CalendarDays, RadioTower } from 'lucide-react'
 
-import Link from 'next/link';
+import Link from 'next/link'
 import {
   Card,
   CardContent,
@@ -1815,33 +1815,33 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import { Separator } from './ui/separator';
-import { Button } from './ui/button';
-import { Badge } from './ui/badge';
-import JobInfo from './JobInfo';
-import DeleteJobButton from './DeleteJobButton';
+} from '@/components/ui/card'
+import { Separator } from './ui/separator'
+import { Button } from './ui/button'
+import { Badge } from './ui/badge'
+import JobInfo from './JobInfo'
+import DeleteJobButton from './DeleteJobButton'
 
 function JobCard({ job }: { job: JobType }) {
-  const date = new Date(job.createdAt).toLocaleDateString();
+  const date = new Date(job.createdAt).toLocaleDateString()
   return (
-    <Card className='bg-muted'>
+    <Card className="bg-muted">
       <CardHeader>
         <CardTitle>{job.position}</CardTitle>
         <CardDescription>{job.company}</CardDescription>
       </CardHeader>
       <Separator />
       <CardContent>{/* card info */}</CardContent>
-      <CardFooter className='flex gap-4'>
-        <Button asChild size='sm'>
+      <CardFooter className="flex gap-4">
+        <Button asChild size="sm">
           <Link href={`/jobs/${job.id}`}>edit</Link>
         </Button>
         <DeleteJobButton />
       </CardFooter>
     </Card>
-  );
+  )
 }
-export default JobCard;
+export default JobCard
 ```
 
 ## Challenge - JobInfo
@@ -1875,24 +1875,24 @@ JobInfo.tsx
 ```tsx
 function JobInfo({ icon, text }: { icon: React.ReactNode; text: string }) {
   return (
-    <div className='flex gap-x-2 items-center'>
+    <div className="flex gap-x-2 items-center">
       {icon}
       {text}
     </div>
-  );
+  )
 }
-export default JobInfo;
+export default JobInfo
 ```
 
 JobCard.tsx
 
 ```tsx
-<CardContent className='mt-4 grid grid-cols-2 gap-4'>
+<CardContent className="mt-4 grid grid-cols-2 gap-4">
   <JobInfo icon={<Briefcase />} text={job.mode} />
   <JobInfo icon={<MapPin />} text={job.location} />
   <JobInfo icon={<CalendarDays />} text={date} />
-  <Badge className='w-32  justify-center'>
-    <JobInfo icon={<RadioTower className='w-4 h-4' />} text={job.status} />
+  <Badge className="w-32  justify-center">
+    <JobInfo icon={<RadioTower className="w-4 h-4" />} text={job.status} />
   </Badge>
 </CardContent>
 ```
@@ -1934,7 +1934,7 @@ actions
 
 ```ts
 export async function deleteJobAction(id: string): Promise<JobType | null> {
-  const userId = authenticateAndRedirect();
+  const userId = authenticateAndRedirect()
 
   try {
     const job: JobType = await prisma.job.delete({
@@ -1942,10 +1942,10 @@ export async function deleteJobAction(id: string): Promise<JobType | null> {
         id,
         clerkId: userId,
       },
-    });
-    return job;
+    })
+    return job
   } catch (error) {
-    return null;
+    return null
   }
 }
 ```
@@ -1984,45 +1984,45 @@ export async function deleteJobAction(id: string): Promise<JobType | null> {
 ## DeleteJobButton
 
 ```tsx
-import { Button } from './ui/button';
-import { Badge } from './ui/badge';
-import JobInfo from './JobInfo';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { deleteJobAction } from '@/utils/actions';
-import { useToast } from '@/components/ui/use-toast';
+import { Button } from './ui/button'
+import { Badge } from './ui/badge'
+import JobInfo from './JobInfo'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { deleteJobAction } from '@/utils/actions'
+import { useToast } from '@/components/ui/use-toast'
 
 function DeleteJobBtn({ id }: { id: string }) {
-  const { toast } = useToast();
-  const queryClient = useQueryClient();
+  const { toast } = useToast()
+  const queryClient = useQueryClient()
   const { mutate, isPending } = useMutation({
     mutationFn: (id: string) => deleteJobAction(id),
     onSuccess: (data) => {
       if (!data) {
         toast({
           description: 'there was an error',
-        });
-        return;
+        })
+        return
       }
-      queryClient.invalidateQueries({ queryKey: ['jobs'] });
-      queryClient.invalidateQueries({ queryKey: ['stats'] });
-      queryClient.invalidateQueries({ queryKey: ['charts'] });
+      queryClient.invalidateQueries({ queryKey: ['jobs'] })
+      queryClient.invalidateQueries({ queryKey: ['stats'] })
+      queryClient.invalidateQueries({ queryKey: ['charts'] })
 
-      toast({ description: 'job removed' });
+      toast({ description: 'job removed' })
     },
-  });
+  })
   return (
     <Button
-      size='sm'
+      size="sm"
       disabled={isPending}
       onClick={() => {
-        mutate(id);
+        mutate(id)
       }}
     >
       {isPending ? 'deleting...' : 'delete'}
     </Button>
-  );
+  )
 }
-export default DeleteJobBtn;
+export default DeleteJobBtn
 ```
 
 ## Challenge - GetSingleJobAction
@@ -2065,8 +2065,8 @@ export default DeleteJobBtn;
 
 ```tsx
 export async function getSingleJobAction(id: string): Promise<JobType | null> {
-  let job: JobType | null = null;
-  const userId = authenticateAndRedirect();
+  let job: JobType | null = null
+  const userId = authenticateAndRedirect()
 
   try {
     job = await prisma.job.findUnique({
@@ -2074,14 +2074,14 @@ export async function getSingleJobAction(id: string): Promise<JobType | null> {
         id,
         clerkId: userId,
       },
-    });
+    })
   } catch (error) {
-    job = null;
+    job = null
   }
   if (!job) {
-    redirect('/jobs');
+    redirect('/jobs')
   }
-  return job;
+  return job
 }
 ```
 
@@ -2126,30 +2126,30 @@ export async function getSingleJobAction(id: string): Promise<JobType | null> {
 jobs/[id]/page.tsx
 
 ```tsx
-import EditJobForm from '@/components/EditJobForm';
-import { getSingleJobAction } from '@/utils/actions';
+import EditJobForm from '@/components/EditJobForm'
+import { getSingleJobAction } from '@/utils/actions'
 
 import {
   dehydrate,
   HydrationBoundary,
   QueryClient,
-} from '@tanstack/react-query';
+} from '@tanstack/react-query'
 
 async function JobDetailPage({ params }: { params: { id: string } }) {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient()
 
   await queryClient.prefetchQuery({
     queryKey: ['job', params.id],
     queryFn: () => getSingleJobAction(params.id),
-  });
+  })
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <EditJobForm jobId={params.id} />
     </HydrationBoundary>
-  );
+  )
 }
-export default JobDetailPage;
+export default JobDetailPage
 ```
 
 ## Challenge - UpdateJobAction
@@ -2192,7 +2192,7 @@ export async function updateJobAction(
   id: string,
   values: CreateAndEditJobType
 ): Promise<JobType | null> {
-  const userId = authenticateAndRedirect();
+  const userId = authenticateAndRedirect()
 
   try {
     const job: JobType = await prisma.job.update({
@@ -2203,10 +2203,10 @@ export async function updateJobAction(
       data: {
         ...values,
       },
-    });
-    return job;
+    })
+    return job
   } catch (error) {
-    return null;
+    return null
   }
 }
 ```
@@ -2258,39 +2258,39 @@ export async function updateJobAction(
 ## EditJobForm
 
 ```tsx
-'use client';
+'use client'
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
 
 import {
   JobStatus,
   JobMode,
   createAndEditJobSchema,
   CreateAndEditJobType,
-} from '@/utils/types';
+} from '@/utils/types'
 
-import { Button } from '@/components/ui/button';
-import { Form } from '@/components/ui/form';
+import { Button } from '@/components/ui/button'
+import { Form } from '@/components/ui/form'
 
-import { CustomFormField, CustomFormSelect } from './FormComponents';
-import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query';
+import { CustomFormField, CustomFormSelect } from './FormComponents'
+import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query'
 import {
   createJobAction,
   getSingleJobAction,
   updateJobAction,
-} from '@/utils/actions';
-import { useToast } from '@/components/ui/use-toast';
-import { useRouter } from 'next/navigation';
+} from '@/utils/actions'
+import { useToast } from '@/components/ui/use-toast'
+import { useRouter } from 'next/navigation'
 function EditJobForm({ jobId }: { jobId: string }) {
-  const queryClient = useQueryClient();
-  const { toast } = useToast();
-  const router = useRouter();
+  const queryClient = useQueryClient()
+  const { toast } = useToast()
+  const router = useRouter()
 
   const { data } = useQuery({
     queryKey: ['job', jobId],
     queryFn: () => getSingleJobAction(jobId),
-  });
+  })
 
   const { mutate, isPending } = useMutation({
     mutationFn: (values: CreateAndEditJobType) =>
@@ -2299,17 +2299,17 @@ function EditJobForm({ jobId }: { jobId: string }) {
       if (!data) {
         toast({
           description: 'there was an error',
-        });
-        return;
+        })
+        return
       }
-      toast({ description: 'job updated' });
-      queryClient.invalidateQueries({ queryKey: ['jobs'] });
-      queryClient.invalidateQueries({ queryKey: ['job', jobId] });
-      queryClient.invalidateQueries({ queryKey: ['stats'] });
-      router.push('/jobs');
+      toast({ description: 'job updated' })
+      queryClient.invalidateQueries({ queryKey: ['jobs'] })
+      queryClient.invalidateQueries({ queryKey: ['job', jobId] })
+      queryClient.invalidateQueries({ queryKey: ['stats'] })
+      router.push('/jobs')
       // form.reset();
     },
-  });
+  })
 
   // 1. Define your form.
   const form = useForm<CreateAndEditJobType>({
@@ -2321,48 +2321,48 @@ function EditJobForm({ jobId }: { jobId: string }) {
       status: (data?.status as JobStatus) || JobStatus.Pending,
       mode: (data?.mode as JobMode) || JobMode.FullTime,
     },
-  });
+  })
 
   // 2. Define a submit handler.
   function onSubmit(values: CreateAndEditJobType) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    mutate(values);
+    mutate(values)
   }
 
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className='bg-muted p-8 rounded'
+        className="bg-muted p-8 rounded"
       >
-        <h2 className='capitalize font-semibold text-4xl mb-6'>edit job</h2>
-        <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-3 items-start'>
+        <h2 className="capitalize font-semibold text-4xl mb-6">edit job</h2>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 items-start">
           {/* position */}
-          <CustomFormField name='position' control={form.control} />
+          <CustomFormField name="position" control={form.control} />
           {/* company */}
-          <CustomFormField name='company' control={form.control} />
+          <CustomFormField name="company" control={form.control} />
           {/* location */}
-          <CustomFormField name='location' control={form.control} />
+          <CustomFormField name="location" control={form.control} />
 
           {/* job status */}
           <CustomFormSelect
-            name='status'
+            name="status"
             control={form.control}
-            labelText='job status'
+            labelText="job status"
             items={Object.values(JobStatus)}
           />
           {/* job  type */}
           <CustomFormSelect
-            name='mode'
+            name="mode"
             control={form.control}
-            labelText='job mode'
+            labelText="job mode"
             items={Object.values(JobMode)}
           />
 
           <Button
-            type='submit'
-            className='self-end capitalize'
+            type="submit"
+            className="self-end capitalize"
             disabled={isPending}
           >
             {isPending ? 'updating...' : 'edit job'}
@@ -2370,9 +2370,9 @@ function EditJobForm({ jobId }: { jobId: string }) {
         </div>
       </form>
     </Form>
-  );
+  )
 }
-export default EditJobForm;
+export default EditJobForm
 ```
 
 ## Seed Database
@@ -2385,33 +2385,33 @@ export default EditJobForm;
 - run "node prisma/seed"
 
 ```js
-const { PrismaClient } = require('@prisma/client');
-const data = require('./mock-data.json');
-const prisma = new PrismaClient();
+const { PrismaClient } = require('@prisma/client')
+const data = require('./mock-data.json')
+const prisma = new PrismaClient()
 
 async function main() {
-  const clerkId = 'user_2ZUfUOtKM8W9eF8hSQbISv7aQmn';
+  const clerkId = 'user_2ZUfUOtKM8W9eF8hSQbISv7aQmn'
   const jobs = data.map((job) => {
     return {
       ...job,
       clerkId,
-    };
-  });
+    }
+  })
   for (const job of jobs) {
     await prisma.job.create({
       data: job,
-    });
+    })
   }
 }
 main()
   .then(async () => {
-    await prisma.$disconnect();
+    await prisma.$disconnect()
   })
   .catch(async (e) => {
-    console.error(e);
-    await prisma.$disconnect();
-    process.exit(1);
-  });
+    console.error(e)
+    await prisma.$disconnect()
+    process.exit(1)
+  })
 ```
 
 ## Challenge - GetStatsAction
@@ -2461,11 +2461,11 @@ main()
 
 ```ts
 export async function getStatsAction(): Promise<{
-  pending: number;
-  interview: number;
-  declined: number;
+  pending: number
+  interview: number
+  declined: number
 }> {
-  const userId = authenticateAndRedirect();
+  const userId = authenticateAndRedirect()
   // just to show Skeleton
   // await new Promise((resolve) => setTimeout(resolve, 5000));
   try {
@@ -2477,21 +2477,21 @@ export async function getStatsAction(): Promise<{
       where: {
         clerkId: userId, // replace userId with the actual clerkId
       },
-    });
+    })
     const statsObject = stats.reduce((acc, curr) => {
-      acc[curr.status] = curr._count.status;
-      return acc;
-    }, {} as Record<string, number>);
+      acc[curr.status] = curr._count.status
+      return acc
+    }, {} as Record<string, number>)
 
     const defaultStats = {
       pending: 0,
       declined: 0,
       interview: 0,
       ...statsObject,
-    };
-    return defaultStats;
+    }
+    return defaultStats
   } catch (error) {
-    redirect('/jobs');
+    redirect('/jobs')
   }
 }
 ```
@@ -2547,8 +2547,8 @@ export async function getStatsAction(): Promise<{
 export async function getChartsDataAction(): Promise<
   Array<{ date: string; count: number }>
 > {
-  const userId = authenticateAndRedirect();
-  const sixMonthsAgo = dayjs().subtract(6, 'month').toDate();
+  const userId = authenticateAndRedirect()
+  const sixMonthsAgo = dayjs().subtract(6, 'month').toDate()
   try {
     const jobs = await prisma.job.findMany({
       where: {
@@ -2560,25 +2560,25 @@ export async function getChartsDataAction(): Promise<
       orderBy: {
         createdAt: 'asc',
       },
-    });
+    })
 
     let applicationsPerMonth = jobs.reduce((acc, job) => {
-      const date = dayjs(job.createdAt).format('MMM YY');
+      const date = dayjs(job.createdAt).format('MMM YY')
 
-      const existingEntry = acc.find((entry) => entry.date === date);
+      const existingEntry = acc.find((entry) => entry.date === date)
 
       if (existingEntry) {
-        existingEntry.count += 1;
+        existingEntry.count += 1
       } else {
-        acc.push({ date, count: 1 });
+        acc.push({ date, count: 1 })
       }
 
-      return acc;
-    }, [] as Array<{ date: string; count: number }>);
+      return acc
+    }, [] as Array<{ date: string; count: number }>)
 
-    return applicationsPerMonth;
+    return applicationsPerMonth
   } catch (error) {
-    redirect('/jobs');
+    redirect('/jobs')
   }
 }
 ```
@@ -2624,23 +2624,23 @@ export async function getChartsDataAction(): Promise<
 
 ```tsx
 function loading() {
-  return <h2 className='text-xl font-medium capitalize'>loading...</h2>;
+  return <h2 className="text-xl font-medium capitalize">loading...</h2>
 }
-export default loading;
+export default loading
 ```
 
 ```tsx
-import ChartsContainer from '@/components/ChartsContainer';
-import StatsContainer from '@/components/StatsContainer';
-import { getChartsDataAction, getStatsAction } from '@/utils/actions';
+import ChartsContainer from '@/components/ChartsContainer'
+import StatsContainer from '@/components/StatsContainer'
+import { getChartsDataAction, getStatsAction } from '@/utils/actions'
 import {
   dehydrate,
   HydrationBoundary,
   QueryClient,
-} from '@tanstack/react-query';
+} from '@tanstack/react-query'
 
 async function StatsPage() {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient()
 
   // await queryClient.prefetchQuery({
   //   queryKey: ['stats'],
@@ -2649,15 +2649,15 @@ async function StatsPage() {
   await queryClient.prefetchQuery({
     queryKey: ['charts'],
     queryFn: () => getChartsDataAction(),
-  });
+  })
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <StatsContainer />
       <ChartsContainer />
     </HydrationBoundary>
-  );
+  )
 }
-export default StatsPage;
+export default StatsPage
 ```
 
 ## Explore - Shadcn/ui Skeleton component
@@ -2720,45 +2720,45 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
+} from '@/components/ui/card'
 
-import { Skeleton } from './ui/skeleton';
+import { Skeleton } from './ui/skeleton'
 
 type StatsCardsProps = {
-  title: string;
-  value: number;
-};
+  title: string
+  value: number
+}
 
 function StatsCards({ title, value }: StatsCardsProps) {
   return (
-    <Card className='bg-muted'>
-      <CardHeader className='flex flex-row justify-between items-center'>
-        <CardTitle className='capitalize'>{title}</CardTitle>
-        <CardDescription className='text-4xl font-extrabold text-primary mt-[0px!important]'>
+    <Card className="bg-muted">
+      <CardHeader className="flex flex-row justify-between items-center">
+        <CardTitle className="capitalize">{title}</CardTitle>
+        <CardDescription className="text-4xl font-extrabold text-primary mt-[0px!important]">
           {value}
         </CardDescription>
       </CardHeader>
     </Card>
-  );
+  )
 }
 
 export function StatsLoadingCard() {
   return (
-    <Card className='w-[330px] h-[88px]'>
-      <CardHeader className='flex flex-row justify-between items-center'>
-        <div className='flex items-center space-x-4'>
-          <Skeleton className='h-12 w-12 rounded-full' />
-          <div className='space-y-2'>
-            <Skeleton className='h-4 w-[150px]' />
-            <Skeleton className='h-4 w-[100px]' />
+    <Card className="w-[330px] h-[88px]">
+      <CardHeader className="flex flex-row justify-between items-center">
+        <div className="flex items-center space-x-4">
+          <Skeleton className="h-12 w-12 rounded-full" />
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-[150px]" />
+            <Skeleton className="h-4 w-[100px]" />
           </div>
         </div>
       </CardHeader>
     </Card>
-  );
+  )
 }
 
-export default StatsCards;
+export default StatsCards
 ```
 
 ## Challenge - StatsContainer
@@ -2798,35 +2798,35 @@ export default StatsCards;
 ## StatsContainer
 
 ```tsx
-'use client';
-import { useQuery } from '@tanstack/react-query';
-import { getStatsAction } from '@/utils/actions';
-import StatsCard, { StatsLoadingCard } from './StatsCard';
+'use client'
+import { useQuery } from '@tanstack/react-query'
+import { getStatsAction } from '@/utils/actions'
+import StatsCard, { StatsLoadingCard } from './StatsCard'
 
 function StatsContainer() {
   const { data, isPending } = useQuery({
     queryKey: ['stats'],
     queryFn: () => getStatsAction(),
-  });
+  })
 
   if (isPending)
     return (
-      <div className='grid md:grid-cols-2 gap-4 lg:grid-cols-3'>
+      <div className="grid md:grid-cols-2 gap-4 lg:grid-cols-3">
         <StatsLoadingCard />
         <StatsLoadingCard />
         <StatsLoadingCard />
       </div>
-    );
+    )
 
   return (
-    <div className='grid md:grid-cols-2 gap-4 lg:grid-cols-3'>
-      <StatsCard title='pending jobs' value={data?.pending || 0} />
-      <StatsCard title='interviews set' value={data?.interview || 0} />
-      <StatsCard title='jobs declined' value={data?.declined || 0} />
+    <div className="grid md:grid-cols-2 gap-4 lg:grid-cols-3">
+      <StatsCard title="pending jobs" value={data?.pending || 0} />
+      <StatsCard title="interviews set" value={data?.interview || 0} />
+      <StatsCard title="jobs declined" value={data?.declined || 0} />
     </div>
-  );
+  )
 }
-export default StatsContainer;
+export default StatsContainer
 ```
 
 ## Explore Re-charts Library
@@ -2877,7 +2877,7 @@ export default StatsContainer;
 ## ChartsContainer
 
 ```tsx
-'use client';
+'use client'
 import {
   BarChart,
   Bar,
@@ -2886,36 +2886,36 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-} from 'recharts';
+} from 'recharts'
 
-import { useQuery } from '@tanstack/react-query';
-import { getChartsDataAction } from '@/utils/actions';
+import { useQuery } from '@tanstack/react-query'
+import { getChartsDataAction } from '@/utils/actions'
 function ChartsContainer() {
   const { data, isPending } = useQuery({
     queryKey: ['charts'],
     queryFn: () => getChartsDataAction(),
-  });
+  })
 
-  if (isPending) return <h2 className='text-xl font-medium'>Please wait...</h2>;
-  if (!data || data.length < 1) return null;
+  if (isPending) return <h2 className="text-xl font-medium">Please wait...</h2>
+  if (!data || data.length < 1) return null
   return (
-    <section className='mt-16'>
-      <h1 className='text-4xl font-semibold text-center'>
+    <section className="mt-16">
+      <h1 className="text-4xl font-semibold text-center">
         Monthly Applications
       </h1>
-      <ResponsiveContainer width='100%' height={300}>
+      <ResponsiveContainer width="100%" height={300}>
         <BarChart data={data} margin={{ top: 50 }}>
-          <CartesianGrid strokeDasharray='3 3' />
-          <XAxis dataKey='date' />
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="date" />
           <YAxis allowDecimals={false} />
           <Tooltip />
-          <Bar dataKey='count' fill='#2563eb' barSize={75} />
+          <Bar dataKey="count" fill="#2563eb" barSize={75} />
         </BarChart>
       </ResponsiveContainer>
     </section>
-  );
+  )
 }
-export default ChartsContainer;
+export default ChartsContainer
 ```
 
 ## Refactor
@@ -2927,17 +2927,17 @@ export async function getAllJobsAction({
   page = 1,
   limit = 10,
 }: GetAllJobsActionTypes): Promise<{
-  jobs: JobType[];
-  count: number;
-  page: number;
-  totalPages: number;
+  jobs: JobType[]
+  count: number
+  page: number
+  totalPages: number
 }> {
-  const userId = authenticateAndRedirect();
+  const userId = authenticateAndRedirect()
 
   try {
     let whereClause: Prisma.JobWhereInput = {
       clerkId: userId,
-    };
+    }
     if (search) {
       whereClause = {
         ...whereClause,
@@ -2953,15 +2953,15 @@ export async function getAllJobsAction({
             },
           },
         ],
-      };
+      }
     }
     if (jobStatus && jobStatus !== 'all') {
       whereClause = {
         ...whereClause,
         status: jobStatus,
-      };
+      }
     }
-    const skip = (page - 1) * limit;
+    const skip = (page - 1) * limit
 
     const jobs: JobType[] = await prisma.job.findMany({
       where: whereClause,
@@ -2970,15 +2970,15 @@ export async function getAllJobsAction({
       orderBy: {
         createdAt: 'desc',
       },
-    });
+    })
     const count: number = await prisma.job.count({
       where: whereClause,
-    });
-    const totalPages = Math.ceil(count / limit);
-    return { jobs, count, page, totalPages };
+    })
+    const totalPages = Math.ceil(count / limit)
+    return { jobs, count, page, totalPages }
   } catch (error) {
-    console.error(error);
-    return { jobs: [], count: 0, page: 1, totalPages: 0 };
+    console.error(error)
+    return { jobs: [], count: 0, page: 1, totalPages: 0 }
   }
 }
 ```
@@ -2986,18 +2986,18 @@ export async function getAllJobsAction({
 ## Create ButtonContainer
 
 ```tsx
-'use client';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+'use client'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 type ButtonContainerProps = {
-  currentPage: number;
-  totalPages: number;
-};
-import { Button } from './ui/button';
-function ButtonContainer({ currentPage, totalPages }: ButtonContainerProps) {
-  return <h2 className='text-4xl'>button container</h2>;
+  currentPage: number
+  totalPages: number
 }
-export default ButtonContainer;
+import { Button } from './ui/button'
+function ButtonContainer({ currentPage, totalPages }: ButtonContainerProps) {
+  return <h2 className="text-4xl">button container</h2>
+}
+export default ButtonContainer
 ```
 
 ## Refactor JobsList
@@ -3028,116 +3028,114 @@ const jobs = data?.jobs || [];
 ## ButtonContainer
 
 ```tsx
-'use client';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+'use client'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 type ButtonContainerProps = {
-  currentPage: number;
-  totalPages: number;
-};
-import { Button } from './ui/button';
+  currentPage: number
+  totalPages: number
+}
+import { Button } from './ui/button'
 function ButtonContainer({ currentPage, totalPages }: ButtonContainerProps) {
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  const pathname = usePathname();
+  const searchParams = useSearchParams()
+  const router = useRouter()
+  const pathname = usePathname()
 
-  const pageButtons = Array.from({ length: totalPages }, (_, i) => i + 1);
+  const pageButtons = Array.from({ length: totalPages }, (_, i) => i + 1)
 
   const handlePageChange = (page: number) => {
     const defaultParams = {
       search: searchParams.get('search') || '',
       jobStatus: searchParams.get('jobStatus') || '',
       page: String(page),
-    };
+    }
 
-    let params = new URLSearchParams(defaultParams);
+    let params = new URLSearchParams(defaultParams)
 
-    router.push(`${pathname}?${params.toString()}`);
-  };
+    router.push(`${pathname}?${params.toString()}`)
+  }
   return (
-    <div className='flex  gap-x-2'>
+    <div className="flex  gap-x-2">
       {pageButtons.map((page) => {
         return (
           <Button
             key={page}
-            size='icon'
+            size="icon"
             variant={currentPage === page ? 'default' : 'outline'}
             onClick={() => handlePageChange(page)}
           >
             {page}
           </Button>
-        );
+        )
       })}
     </div>
-  );
+  )
 }
-export default ButtonContainer;
+export default ButtonContainer
 ```
 
 ## ComplexButtonContainer
 
 ```tsx
-'use client';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+'use client'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 type ButtonContainerProps = {
-  currentPage: number;
-  totalPages: number;
-};
+  currentPage: number
+  totalPages: number
+}
 
 type ButtonProps = {
-  page: number;
-  activeClass: boolean;
-};
+  page: number
+  activeClass: boolean
+}
 
-import { Button } from './ui/button';
+import { Button } from './ui/button'
 function ButtonContainer({ currentPage, totalPages }: ButtonContainerProps) {
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  const pathname = usePathname();
+  const searchParams = useSearchParams()
+  const router = useRouter()
+  const pathname = usePathname()
 
-  const pageButtons = Array.from({ length: totalPages }, (_, i) => i + 1);
+  const pageButtons = Array.from({ length: totalPages }, (_, i) => i + 1)
 
   const handlePageChange = (page: number) => {
     const defaultParams = {
       search: searchParams.get('search') || '',
       jobStatus: searchParams.get('jobStatus') || '',
       page: String(page),
-    };
+    }
 
-    let params = new URLSearchParams(defaultParams);
+    let params = new URLSearchParams(defaultParams)
 
-    router.push(`${pathname}?${params.toString()}`);
-  };
+    router.push(`${pathname}?${params.toString()}`)
+  }
 
   const addPageButton = ({ page, activeClass }: ButtonProps) => {
     return (
       <Button
         key={page}
-        size='icon'
+        size="icon"
         variant={activeClass ? 'default' : 'outline'}
         onClick={() => handlePageChange(page)}
       >
         {page}
       </Button>
-    );
-  };
+    )
+  }
 
   const renderPageButtons = () => {
-    const pageButtons = [];
+    const pageButtons = []
     // first page
-    pageButtons.push(
-      addPageButton({ page: 1, activeClass: currentPage === 1 })
-    );
+    pageButtons.push(addPageButton({ page: 1, activeClass: currentPage === 1 }))
     // dots
 
     if (currentPage > 3) {
       pageButtons.push(
-        <Button size='icon' variant='outline' key='dots-1'>
+        <Button size="icon" variant="outline" key="dots-1">
           ...
         </Button>
-      );
+      )
     }
     // one before current page
     if (currentPage !== 1 && currentPage !== 2) {
@@ -3146,7 +3144,7 @@ function ButtonContainer({ currentPage, totalPages }: ButtonContainerProps) {
           page: currentPage - 1,
           activeClass: false,
         })
-      );
+      )
     }
     // current page
     if (currentPage !== 1 && currentPage !== totalPages) {
@@ -3155,7 +3153,7 @@ function ButtonContainer({ currentPage, totalPages }: ButtonContainerProps) {
           page: currentPage,
           activeClass: true,
         })
-      );
+      )
     }
     // one after current page
 
@@ -3165,34 +3163,34 @@ function ButtonContainer({ currentPage, totalPages }: ButtonContainerProps) {
           page: currentPage + 1,
           activeClass: false,
         })
-      );
+      )
     }
     if (currentPage < totalPages - 2) {
       pageButtons.push(
-        <Button size='icon' variant='outline' key='dots-1'>
+        <Button size="icon" variant="outline" key="dots-1">
           ...
         </Button>
-      );
+      )
     }
     pageButtons.push(
       addPageButton({
         page: totalPages,
         activeClass: currentPage === totalPages,
       })
-    );
-    return pageButtons;
-  };
+    )
+    return pageButtons
+  }
 
   return (
-    <div className='flex  gap-x-2'>
+    <div className="flex  gap-x-2">
       {/* prev */}
       <Button
-        className='flex items-center gap-x-2 '
-        variant='outline'
+        className="flex items-center gap-x-2 "
+        variant="outline"
         onClick={() => {
-          let prevPage = currentPage - 1;
-          if (prevPage < 1) prevPage = totalPages;
-          handlePageChange(prevPage);
+          let prevPage = currentPage - 1
+          if (prevPage < 1) prevPage = totalPages
+          handlePageChange(prevPage)
         }}
       >
         <ChevronLeft />
@@ -3201,19 +3199,19 @@ function ButtonContainer({ currentPage, totalPages }: ButtonContainerProps) {
       {renderPageButtons()}
       {/* next */}
       <Button
-        className='flex items-center gap-x-2 '
+        className="flex items-center gap-x-2 "
         onClick={() => {
-          let nextPage = currentPage + 1;
-          if (nextPage > totalPages) nextPage = 1;
-          handlePageChange(nextPage);
+          let nextPage = currentPage + 1
+          if (nextPage > totalPages) nextPage = 1
+          handlePageChange(nextPage)
         }}
-        variant='outline'
+        variant="outline"
       >
         next
         <ChevronRight />
       </Button>
     </div>
-  );
+  )
 }
-export default ButtonContainer;
+export default ButtonContainer
 ```

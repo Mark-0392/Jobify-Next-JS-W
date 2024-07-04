@@ -23,7 +23,7 @@ export default function Home() {
             narwhal.
           </p>
           <Button asChild className="mt-4">
-            <Link href="/add-job">Add Job</Link>
+            <Link href="/add-job">Get Started</Link>
           </Button>
         </div>
         <Image

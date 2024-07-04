@@ -9,7 +9,6 @@ import { Button } from './ui/button'
 
 function Sidebar() {
   const pathName = usePathname()
-  console.log(pathName)
 
   return (
     <aside className="py-4 px-8 bg-muted h-full">

@@ -1,4 +1,10 @@
+import CreateJobForm from '@/components/CreateJobForm'
+
 function AddJobPage() {
-  return <div className="text-4xl">AddJobPage</div>
+  return (
+    <>
+      <CreateJobForm />
+    </>
+  )
 }
 export default AddJobPage

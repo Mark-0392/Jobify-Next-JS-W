@@ -2383,6 +2383,7 @@ export default EditJobForm
 - log user id
 - create seed.js
 - run "node prisma/seed"
+  user_2ilHZk2v4wEHVHAKO5Gepz49YDp
 
 ```js
 const { PrismaClient } = require('@prisma/client')
@@ -2390,7 +2391,7 @@ const data = require('./mock-data.json')
 const prisma = new PrismaClient()
 
 async function main() {
-  const clerkId = 'user_2ZUfUOtKM8W9eF8hSQbISv7aQmn'
+  const clerkId = 'user_2ilHZk2v4wEHVHAKO5Gepz49YDp'
   const jobs = data.map((job) => {
     return {
       ...job,

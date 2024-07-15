@@ -10,7 +10,7 @@ import { string } from 'zod'
 
 function authenticateandRedirect(): string {
   const { userId } = auth()
-  console.log('userId', userId)
+  // console.log('userId', userId)
 
   if (!userId) redirect('/')
   return userId
@@ -19,11 +19,11 @@ function authenticateandRedirect(): string {
 export async function createJobAction(
   values: CreateAndEditJobType
 ): Promise<JobType | null> {
-  await new Promise((resolve) => setTimeout(resolve, 3000))
-  createAndEditJobSchema.parse(values)
+  // await new Promise((resolve) => setTimeout(resolve, 3000))
   const userId = authenticateandRedirect()
 
   try {
+    createAndEditJobSchema.parse(values)
     const job: JobType = await prisma.job.create({
       data: {
         ...values,

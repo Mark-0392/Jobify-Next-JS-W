@@ -2384,6 +2384,7 @@ export default EditJobForm
 - create seed.js
 - run "node prisma/seed"
   user_2ilHZk2v4wEHVHAKO5Gepz49YDp
+  userId user_2ilHZk2v4wEHVHAKO5Gepz49YDp
 
 ```js
 const { PrismaClient } = require('@prisma/client')
